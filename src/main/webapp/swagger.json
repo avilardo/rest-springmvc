@@ -1,0 +1,154 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "0.1",
+    "title" : "Globoast API"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/spring-sample",
+  "tags" : [ {
+    "name" : "Channels"
+  }, {
+    "name" : "Members"
+  } ],
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/channels" : {
+      "get" : {
+        "tags" : [ "Channels" ],
+        "summary" : "get a list of channels",
+        "description" : "Returns all channels in cache",
+        "operationId" : "listAllChannels",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Channel"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Channels" ],
+        "summary" : "create a new channel",
+        "description" : "Create a new channel in cache",
+        "operationId" : "createChannel",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "The channel to be created",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Channel"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/channels/{id}" : {
+      "get" : {
+        "tags" : [ "Channels" ],
+        "summary" : "get a channel by id",
+        "description" : "Returns a specific channel",
+        "operationId" : "lookupChannelById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The id of the channel to return",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Channel"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Channels" ],
+        "summary" : "delete a channel by id",
+        "description" : "Remove a specific channel from cache",
+        "operationId" : "deleteChannel",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The id of the channel to return",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/members" : {
+      "get" : {
+        "tags" : [ "Members" ],
+        "summary" : "get a list of members",
+        "description" : "Returns all members in cache",
+        "operationId" : "listAllMembers",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Channel"
+            }
+          }
+        }
+      }
+    },
+    "/members/{id}" : {
+      "get" : {
+        "tags" : [ "Members" ],
+        "summary" : "get a channel by id",
+        "description" : "Returns a specific channel",
+        "operationId" : "lookupMemberById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Channel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Channel" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
